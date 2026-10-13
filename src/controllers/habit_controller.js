@@ -11,9 +11,9 @@ class HabitController {
     }
 
     addHabit(data) {
-        const { id, name, category, quantity, progress, interval, streak, dateCreated } = data;
+        const { id, name, category, quantity, progress, interval, streaks, dateCreated } = data;
 
-        var habit = new Habit(id, name, category, quantity, progress, interval, streak, dateCreated,);
+        var habit = new Habit(id, name, category, quantity, progress, interval, streaks, dateCreated,);
         database.allHabits.push(habit);
         return database.allHabits;
     }
