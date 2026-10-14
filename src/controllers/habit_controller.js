@@ -18,6 +18,19 @@ class HabitController {
         return database.allHabits;
     }
 
+    updateHabit(data)
+    {
+        const { id, name, category, quantity, progress, interval, streaks, dateCreated } = data;
+
+        var habit = new Habit(id, name, category, quantity, progress, interval, streaks, dateCreated,);
+        let currentHabits = database.allHabits;
+        let index = currentHabits.findIndex(habitElement=>habitElement.id == habit.id);
+        currentHabits[index] = habit;
+        database.allHabits = currentHabits;
+        return database.allHabits;
+
+    }
+
 }
 
 export default HabitController;

@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 
 app.use("/habits", habitRouter);
 app.use("/habits/add", habitRouter);
+app.use("/habits/update", habitRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -18,4 +18,12 @@ router.post("/add", async (req, res) => {
   res.send({allHabits:newList});
 });
 
+router.post("/update", async (req, res) => {
+  
+  let habitController  = new HabitController(); 
+  let newList = habitController.updateHabit(req.body);
+
+  res.send({updatedHabits:newList});
+});
+
 export default router;
