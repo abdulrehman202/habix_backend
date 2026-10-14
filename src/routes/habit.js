@@ -26,10 +26,10 @@ router.put("/update", async (req, res) => {
   res.send({updatedHabits:newList});
 });
 
-router.put("/remove", async (req, res) => {
+router.delete("/remove/:id", async (req, res) => {
   
   let habitController  = new HabitController(); 
-  let newList = habitController.removeHabit(req.body);
+  let newList = habitController.removeHabit(req.params.id);
 
   res.send({updatedHabits:newList});
 });
