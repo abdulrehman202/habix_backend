@@ -18,10 +18,18 @@ router.post("/add", async (req, res) => {
   res.send({allHabits:newList});
 });
 
-router.post("/update", async (req, res) => {
+router.put("/update", async (req, res) => {
   
   let habitController  = new HabitController(); 
   let newList = habitController.updateHabit(req.body);
+
+  res.send({updatedHabits:newList});
+});
+
+router.put("/remove", async (req, res) => {
+  
+  let habitController  = new HabitController(); 
+  let newList = habitController.removeHabit(req.body);
 
   res.send({updatedHabits:newList});
 });

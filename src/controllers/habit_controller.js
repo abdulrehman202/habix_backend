@@ -28,7 +28,17 @@ class HabitController {
         currentHabits[index] = habit;
         database.allHabits = currentHabits;
         return database.allHabits;
+    }
 
+    removeHabit(data)
+    {
+        const { id } = data;
+
+        let currentHabits = database.allHabits;
+        let index = currentHabits.findIndex(habitElement=>habitElement.id == id);
+        currentHabits.splice(index, 1);
+        database.allHabits = currentHabits;
+        return database.allHabits;
     }
 
 }
