@@ -3,6 +3,7 @@ import express from 'express';
 const app = express();
 import cors from 'cors';
 import habitRouter from './src/routes/habit.js';
+import authRouter from './src/routes/user_auth.js';
 
 const PORT = process.env.PORT || 8000;
 
@@ -10,20 +11,8 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log('Middleware 2: This also always runs');
-
-  //if(request not okay){
-  // res.status(410).json({
-  //   success: false,
-  //   message: "User not found"
-  // });}
-
-  //else{
-  next();
-  //}
-
-});
+app.use("/user", authRouter);
+app.use("/user/login", authRouter);
 
 app.use("/habits", habitRouter);
 app.use("/habits/add", habitRouter);
