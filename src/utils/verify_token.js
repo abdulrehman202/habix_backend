@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 export default ((token) => {
     try {
         const verifiedPayload = jwt.verify(token, process.env.JWT_SECRET);
-        console.log('Valid Token! Data:', verifiedPayload);
+        return true
     } catch (error) {
-        console.error('Invalid or expired token.');
+        return false
     }
 });

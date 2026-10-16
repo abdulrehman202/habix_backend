@@ -1,14 +1,16 @@
-export default ((req,res,next)=>
-    {
-        console.log('this always runs again');
-        let tokenOk = true;//verfiyTokenScript(req.body);
-        
-        if(tokenOk)
-        {
-            next();
-        }
+import verfiyTokenScript from '../utils/verify_token.js';
+import extractTokenFromHeader from '../utils/extract_token.js';
 
-        else{
-            res.send({result:'Error'})
-        }
-    });
+export default ((req, res, next) => {
+    let token = extractTokenFromHeader(req.headers['authorization']);
+    
+    let tokenOk = verfiyTokenScript(token);
+
+    if (tokenOk) {
+        next();
+    }
+
+    else {
+        res.send({ result: 'Error' })
+    }
+});
