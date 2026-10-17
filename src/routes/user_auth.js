@@ -1,11 +1,15 @@
 import express from "express";
-import verifyToken from '../middlewares/token_middlewares.js';
+import generateToken from '../utils/token_generator.js';
 const router = express.Router();
 
-router.use("/login", verifyToken);
-
 router.get("/login", (req, res) => {
-res.send({result:'OK'})
+var token = generateToken({email:req.body.email,password:req.body.password});
+res.send({token:token})
+});
+
+router.get("/signup", (req, res) => {
+var token = generateToken({email:req.body.email,password:req.body.password});
+res.send({token:token})
 });
 
 export default router;

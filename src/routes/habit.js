@@ -1,6 +1,9 @@
+import HabitController from '../controllers/habit_controller.js';
 import express from "express";
 const router = express.Router();
-import HabitController from '../controllers/habit_controller.js';
+import verifyToken from '../middlewares/verify_token_middleware.js';
+
+router.use(verifyToken);
 
 router.get("/", (req, res) => {
 
