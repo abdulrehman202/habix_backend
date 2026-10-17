@@ -11,6 +11,6 @@ export default ((req, res, next) => {
     }
 
     else {
-        res.send({ result: 'Error' })
+        res.status(401).send({ result: 'Error' })
     }
 });

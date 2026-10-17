@@ -3,8 +3,9 @@ import generateToken from '../utils/token_generator.js';
 const router = express.Router();
 import hashPassword from '../utils/hash_password.js';
 
-router.get("/login", (req, res) => {
-var token = generateToken({email:req.body.email,password:req.body.password});
+router.post("/login", (req, res) => {
+    const {email, password} = req.body;
+var token = generateToken({email:email,password:password});
 res.send({token:token})
 });
 
