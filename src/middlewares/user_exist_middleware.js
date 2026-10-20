@@ -1,13 +1,15 @@
 import AuthController from "../controllers/auth_controller.js";
+import bcrypt from 'bcrypt';
 
-export default ((req, res, next) => {
+export default (async (req, res, next)  => {
     const { email,password } = req.body;
 
     let authController = new AuthController();
     let user = authController.userExist(email);
 
     if (user !=null) {
-        if(user.password == password)
+        let passwordVerified  = await bcrypt.compare(password,user.password);
+        if(passwordVerified)
             {
                 next();
             }

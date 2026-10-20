@@ -11,7 +11,7 @@ class Database{
             new Habit('5', 'Long Drive', 'MIND', 20, 0, 'WEEKEND', 0, Date.now()),];
 
     static users = [
-       new UserAuth('abdulrehman1411@gmail.com','abc123'),
+       new UserAuth('abdulrehman1411@gmail.com','$2b$10$9szFF7kT.BZbwm6Te28GyeJJkkTwA95vGy6HmijCvuSCNcL07qU4u'),
 
     ]
 }
