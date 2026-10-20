@@ -3,8 +3,10 @@ import generateToken from '../utils/token_generator.js';
 const router = express.Router();
 import hashPassword from '../utils/hash_password.js';
 import userExist from '../middlewares/user_exist_middleware.js';
+import userAlreadyExist from "../middlewares/user_already_exist_middleware.js";
 
 router.use('/login', userExist);
+router.use('/signup', userAlreadyExist);
 
 router.post("/login", (req, res) => {
     const {email, password} = req.body;
