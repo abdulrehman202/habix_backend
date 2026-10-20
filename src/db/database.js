@@ -1,4 +1,6 @@
 import Habit from '../models/habit.js';
+import UserAuth from '../models/user_auth.js';
+
 
 class Database{
     static allHabits = [
@@ -7,6 +9,11 @@ class Database{
             new Habit('3', 'Exercise', 'PRODUCTIVITY', 15, 0, 'WEEKDAYS', 0, Date.now()),
             new Habit('4', 'Read Book', 'MIND', 30, 0, 'WEEKEND', 0, Date.now()),
             new Habit('5', 'Long Drive', 'MIND', 20, 0, 'WEEKEND', 0, Date.now()),];
+
+    static users = [
+       new UserAuth('abdulrehman1411@gmail.com','abc123'),
+
+    ]
 }
 
 export default Database;
