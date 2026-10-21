@@ -1,0 +1,18 @@
+# Exported from Render on 2026-10-21T12:14:02Z
+version: "1"
+projects:
+- name: My project
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: habix_backend
+      runtime: node
+      repo: https://github.com/abdulrehman202/habix_backend
+      plan: free
+      region: singapore
+      buildCommand: npm install
+      startCommand: node index.js
+      autoDeployTrigger: commit
+      envVars:
+      - fromGroup: habix_env
