@@ -4,6 +4,7 @@ const app = express();
 import cors from 'cors';
 import habitRouter from './src/routes/habit.js';
 import authRouter from './src/routes/user_auth.js';
+import userProfileRouter from './src/routes/user_profile.js';
 
 const PORT = process.env.PORT || 8000;
 
@@ -19,6 +20,10 @@ app.use("/habits", habitRouter);
 app.use("/habits/add", habitRouter);
 app.use("/habits/update", habitRouter);
 app.use("/habits/remove/:id", habitRouter);
+
+app.use("/userProfile", userProfileRouter);
+app.use("/userProfile/set", userProfileRouter);
+app.use("/userProfile/update", userProfileRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

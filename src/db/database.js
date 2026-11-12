@@ -1,5 +1,6 @@
 import Habit from '../models/habit.js';
 import UserAuth from '../models/user_auth.js';
+import UserProfile from '../models/user_profile.js';
 
 
 class Database{
@@ -13,6 +14,10 @@ class Database{
     static users = [
        new UserAuth('abdulrehman1411@gmail.com','$2b$10$9szFF7kT.BZbwm6Te28GyeJJkkTwA95vGy6HmijCvuSCNcL07qU4u'),
 
+    ]
+
+    static userProfiles = [
+        new UserProfile('abdulrehman1411@gmail.com', 'Abdul Rehman', '1998-01-01', 70, 170, 'MALE')
     ]
 }
 
