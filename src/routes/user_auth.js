@@ -24,4 +24,10 @@ authController.createNewUser(email, hashedPassword);
 res.send({msg:'new User added'});
 });
 
+router.put("/signout", async (req, res) => {
+    let authController = new AuthController();
+authController.signout(req.headers['authorization']);
+res.send({success:true});
+});
+
 export default router;

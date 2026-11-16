@@ -19,6 +19,9 @@ class Database{
     static userProfiles = [
         new UserProfile('abdulrehman1411@gmail.com', 'Abdul Rehman', '1998-01-01', 70, 170, 'MALE')
     ]
+
+    static tokens = [
+    ]
 }
 
 export default Database;
