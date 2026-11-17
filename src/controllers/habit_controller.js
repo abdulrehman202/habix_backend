@@ -10,19 +10,43 @@ class HabitController {
         return allHabits;
     }
 
-    addHabit(data) {
-        const { id, name, category, quantity, progress, interval, streaks, dateCreated } = data;
+    getAllProgress() {
+        var progress = database.progress;
 
-        var habit = new Habit(id, name, category, quantity, progress, interval, streaks, dateCreated,);
+        return progress;
+    }
+
+    incrementProgress(id) {
+        var progress = database.progress;
+        var habitProgress = progress.find(habitElement => habitElement.habitId == id);
+        if (habitProgress) {
+            habitProgress.progress++;
+        }
+        return true;
+    }
+
+    decrementProgress(id) {
+        var progress = database.progress;
+        var habitProgress = progress.find(habitElement => habitElement.habitId == id);
+        if (habitProgress) {
+            habitProgress.progress--;
+        }
+        return true;
+    }
+
+    addHabit(data) {
+        const { id, name, category, quantity, interval, streaks, dateCreated } = data;
+
+        var habit = new Habit(id, name, category, quantity, interval, streaks, dateCreated,);
         database.allHabits.push(habit);
         return database.allHabits;
     }
 
     updateHabit(data)
     {
-        const { id, name, category, quantity, progress, interval, streaks, dateCreated } = data;
+        const { id, name, category, quantity, interval, streaks, dateCreated } = data;
 
-        var habit = new Habit(id, name, category, quantity, progress, interval, streaks, dateCreated,);
+        var habit = new Habit(id, name, category, quantity, interval, streaks, dateCreated,);
         let currentHabits = database.allHabits;
         let index = currentHabits.findIndex(habitElement=>habitElement.id == habit.id);
         currentHabits[index] = habit;

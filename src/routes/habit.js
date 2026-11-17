@@ -13,6 +13,30 @@ router.get("/", (req, res) => {
   res.send({allHabitsList: allHabits});
 });
 
+router.get("/progress", (req, res) => {
+
+  let habitController  = new HabitController(); 
+  let allProgress = habitController.getAllProgress();
+  
+  res.send({allProgressList: allProgress});
+});
+
+router.put("/progress/increment/:id", (req, res) => {
+
+  let habitController  = new HabitController(); 
+  let success = habitController.incrementProgress(req.params.id);
+  
+  res.send({success: success});
+});
+
+router.put("/progress/decrement/:id", (req, res) => {
+
+  let habitController  = new HabitController(); 
+  let success = habitController.decrementProgress(req.params.id);
+  
+  res.send({success: success});
+});
+
 router.post("/add", async (req, res) => {
   
   let habitController  = new HabitController(); 

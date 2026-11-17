@@ -19,6 +19,9 @@ app.use("/user/signout", authRouter);
 
 app.use("/habits", habitRouter);
 app.use("/habits/add", habitRouter);
+app.use("/habits/progress", habitRouter);
+app.use("/habits/progress/increment/:id", habitRouter);
+app.use("/habits/progress/decrement/:id", habitRouter);
 app.use("/habits/update", habitRouter);
 app.use("/habits/remove/:id", habitRouter);
 
