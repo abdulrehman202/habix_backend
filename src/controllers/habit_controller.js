@@ -16,11 +16,11 @@ class HabitController {
         return progress;
     }
 
-    incrementProgress(id) {
+    incrementProgress(id, count) {
         var progress = database.progress;
         var habitProgress = progress.find(habitElement => habitElement.habitId == id);
         if (habitProgress) {
-            habitProgress.progress++;
+            habitProgress.progress+=count;
         }
         return true;
     }
