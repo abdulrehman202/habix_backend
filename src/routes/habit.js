@@ -21,10 +21,14 @@ router.get("/progress", (req, res) => {
   res.send({allProgressList: allProgress});
 });
 
-router.put("/progress/increment/:id/:count", (req, res) => {
+router.put("/progress/increment/", (req, res) => {
 
   let habitController  = new HabitController(); 
-  let success = habitController.incrementProgress(req.params.id, req.params.count);
+  let success = false;
+  Object.keys(req.body).forEach((key) => {
+    success = habitController.incrementProgress(key, req.body[key]);
+  });
+
   
   res.send({success: success});
 });
