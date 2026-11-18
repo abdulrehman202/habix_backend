@@ -13,7 +13,7 @@ class Database{
             new Habit('5', 'Long Drive', 'MIND', 20, 'WEEKEND', 0, Date.now()),];
 
     static progress = [
-            new HabitProgress('1', 25 ),
+            // new HabitProgress('1', 20 ),
             new HabitProgress('2', 4 ),
             new HabitProgress('3', 7 ),
             new HabitProgress('4', 17),

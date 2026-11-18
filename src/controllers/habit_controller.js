@@ -1,5 +1,7 @@
 import Habit from '../models/habit.js';
 import database from '../db/database.js';
+import HabitProgress from '../models/habit_progress.js';
+
 class HabitController {
 
     constructor() { }
@@ -20,7 +22,11 @@ class HabitController {
         var progress = database.progress;
         var habitProgress = progress.find(habitElement => habitElement.habitId == id);
         if (habitProgress) {
-            habitProgress.progress+=count;
+            habitProgress.progress+=Number(count);
+        }
+
+        else{
+            database.progress.push(new HabitProgress(id, Number(count)));
         }
         return true;
     }
