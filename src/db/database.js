@@ -31,6 +31,9 @@ class Database{
 
     static tokens = [
     ]
+
+    static deviceTokens = [
+    ]
 }
 
 export default Database;

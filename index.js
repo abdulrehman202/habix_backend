@@ -5,12 +5,15 @@ import cors from 'cors';
 import habitRouter from './src/routes/habit.js';
 import authRouter from './src/routes/user_auth.js';
 import userProfileRouter from './src/routes/user_profile.js';
+import devices from './src/routes/devices.js';
+
 
 const PORT = process.env.PORT || 8000;
 
 // Enable all CORS requests
 app.use(cors());
 app.use(express.json());
+app.use(devices);
 
 app.use("/user", authRouter);
 app.use("/user/login", authRouter);
@@ -30,5 +33,5 @@ app.use("/userProfile/set", userProfileRouter);
 app.use("/userProfile/update", userProfileRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
