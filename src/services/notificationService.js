@@ -1,8 +1,8 @@
 import messaging from '../firebase/firebase.js';
 
 async function sendToUser(tokens, { title, body, data = {} }) {
-    let token = tokens[0];
-    await messaging.send({ token, notification: { title, body } });
+    // let token = tokens[0];
+    // await messaging.send({ token, notification: { title, body } });
 //   const { rows } = await pool.query(
 //     'SELECT token FROM device_tokens WHERE user_id = $1',
 //     [userId]
