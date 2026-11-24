@@ -8,7 +8,6 @@ router.use(verifyToken);
 router.get("/", (req, res) => {
 
   let habitController  = new HabitController();
-  let sample = habitController.isAnyHabitRemainingForToday();
   let allHabits = habitController.getAllHabits();
   
   res.send({allHabitsList: allHabits});

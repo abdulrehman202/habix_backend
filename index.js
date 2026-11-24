@@ -6,13 +6,22 @@ import habitRouter from './src/routes/habit.js';
 import authRouter from './src/routes/user_auth.js';
 import userProfileRouter from './src/routes/user_profile.js';
 import devices from './src/routes/devices.js';
-
+import schedule from './src/services/scheduleNotification.js';
+import cron from'node-cron';
 
 const PORT = process.env.PORT || 8000;
 
 // Enable all CORS requests
 app.use(cors());
 app.use(express.json());
+
+
+cron.schedule('50 16 * * *', async () => {
+  schedule();
+}, {
+  timezone: 'Asia/Karachi' // Set your target timezone
+});
+
 app.use(devices);
 
 app.use("/user", authRouter);

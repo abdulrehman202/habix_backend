@@ -92,7 +92,7 @@ class HabitController {
         let isThereAnyPendingHabit = false;
 
         Object.keys(mapQuantity).forEach((key) => {
-            let prog = allProgress.find((p) => p.id == key);
+            let prog = allProgress.find((p) => p.habitId == key);
             if (prog) {
                 mapProgress[key] = prog.progress;
             }
