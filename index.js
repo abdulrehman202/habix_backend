@@ -33,5 +33,5 @@ app.use("/userProfile/set", userProfileRouter);
 app.use("/userProfile/update", userProfileRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://0.0.0.0:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
