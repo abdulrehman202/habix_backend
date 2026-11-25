@@ -9,6 +9,14 @@ import AuthController from "../controllers/auth_controller.js";
 router.use('/login', userExist);
 router.use('/signup', userAlreadyExist);
 
+router.get('/verify/', (req, res) => {
+  try {
+    res.send('Email verified successfully!');
+  } catch (err) {
+    res.status(400).send('Invalid or expired token.');
+  }
+});
+
 router.post("/login", (req, res) => {
     const {email, password} = req.body;
 var token = generateToken({email:email,password:password});

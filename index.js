@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 
-cron.schedule('50 16 * * *', async () => {
+cron.schedule('09 17 * * *', async () => {
   schedule();
 }, {
   timezone: 'Asia/Karachi' // Set your target timezone
