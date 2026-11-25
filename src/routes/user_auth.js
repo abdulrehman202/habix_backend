@@ -5,13 +5,16 @@ import hashPassword from '../utils/hash_password.js';
 import userExist from '../middlewares/user_exist_middleware.js';
 import userAlreadyExist from "../middlewares/user_already_exist_middleware.js";
 import AuthController from "../controllers/auth_controller.js";
+import verificationEvents from '../utils/verification_event.js';
 
 router.use('/login', userExist);
 router.use('/signup', userAlreadyExist);
 
 router.get('/verify/', (req, res) => {
   try {
-    res.send('Email verified successfully!');
+    const found = verificationEvents.emit(req.query.token);
+  if (!found) return res.status(400).send('Link expired or already used.');
+  res.send('Email verified! You can return to the app.');
   } catch (err) {
     res.status(400).send('Invalid or expired token.');
   }
