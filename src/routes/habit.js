@@ -3,6 +3,7 @@ import express from "express";
 const router = express.Router();
 import verifyToken from '../middlewares/verify_token_middleware.js';
 import scheduleHabitNotification from '../utils/schedule_habit_notification.js';
+import db from '../db/database.js';
 
 router.use(verifyToken);
 
@@ -46,7 +47,7 @@ router.post("/add", async (req, res) => {
   
   let habitController  = new HabitController(); 
   let newList = habitController.addHabit(req.body);
-  let tokenOfDeviceLoggedIn = '';
+  let tokenOfDeviceLoggedIn = db.deviceTokens[0];
   const { name, interval, hour, minute} = req.body;
   await scheduleHabitNotification(tokenOfDeviceLoggedIn, name, hour, minute,interval);
   res.send({allHabits:newList});
