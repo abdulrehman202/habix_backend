@@ -32,7 +32,7 @@ export default (async (req, res, next) => {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 2525,
-            secure: true,
+            secure: false,
             service: 'gmail',
             auth: { user: process.env.EMAIL_ID, pass: process.env.EMAIL_PASSWORD }
         });
