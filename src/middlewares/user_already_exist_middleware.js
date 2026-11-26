@@ -31,7 +31,7 @@ export default (async (req, res, next) => {
     else {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
-            port: 465,
+            port: 2525,
             secure: true,
             service: 'gmail',
             auth: { user: process.env.EMAIL_ID, pass: process.env.EMAIL_PASSWORD }
