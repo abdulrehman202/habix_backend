@@ -34,6 +34,8 @@ class Database{
 
     static deviceTokens = [
     ]
+
+    static tasks = {}
 }
 
 export default Database;

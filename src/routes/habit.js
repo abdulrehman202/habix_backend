@@ -2,7 +2,7 @@ import HabitController from '../controllers/habit_controller.js';
 import express from "express";
 const router = express.Router();
 import verifyToken from '../middlewares/verify_token_middleware.js';
-import scheduleHabitNotification from '../utils/schedule_habit_notification.js';
+import {scheduleHabitNotification, updateScheduleHabitNotification, deleteScheduleHabitNotification} from '../utils/schedule_habit_notification.js';
 import db from '../db/database.js';
 
 router.use(verifyToken);
@@ -48,8 +48,8 @@ router.post("/add", async (req, res) => {
   let habitController  = new HabitController(); 
   let newList = habitController.addHabit(req.body);
   let tokenOfDeviceLoggedIn = db.deviceTokens[0];
-  const { name, interval, hour, minute} = req.body;
-  await scheduleHabitNotification(tokenOfDeviceLoggedIn, name, hour, minute,interval);
+  const { id, name, interval, hour, minute} = req.body;
+  await scheduleHabitNotification(tokenOfDeviceLoggedIn,id, name, hour, minute,interval);
   res.send({allHabits:newList});
 });
 
@@ -57,7 +57,9 @@ router.put("/update", async (req, res) => {
   
   let habitController  = new HabitController(); 
   let newList = habitController.updateHabit(req.body);
-
+  let tokenOfDeviceLoggedIn = db.deviceTokens[0];
+  const { id, name, interval, hour, minute} = req.body;
+  await updateScheduleHabitNotification(tokenOfDeviceLoggedIn,id, name, hour, minute,interval);
   res.send({updatedHabits:newList});
 });
 
@@ -65,7 +67,7 @@ router.delete("/remove/:id", async (req, res) => {
   
   let habitController  = new HabitController(); 
   let newList = habitController.removeHabit(req.params.id);
-
+  await deleteScheduleHabitNotification(req.params.id);
   res.send({updatedHabits:newList});
 });
 
