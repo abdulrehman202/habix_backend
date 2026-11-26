@@ -2,7 +2,6 @@ import Habit from '../models/habit.js';
 import database from '../db/database.js';
 import HabitProgress from '../models/habit_progress.js';
 import isWeekend from '../utils/check_weekend.js';
-import Database from '../db/database.js';
 
 class HabitController {
 
@@ -43,17 +42,17 @@ class HabitController {
     }
 
     addHabit(data) {
-        const { id, name, category, quantity, interval, streaks, dateCreated } = data;
+        const { id, name, category, quantity, interval,hour, minute, streaks, dateCreated } = data;
 
-        var habit = new Habit(id, name, category, quantity, interval, streaks, dateCreated,);
+        var habit = new Habit(id, name, category, quantity, interval,hour, minute, streaks, dateCreated,);
         database.allHabits.push(habit);
         return database.allHabits;
     }
 
     updateHabit(data) {
-        const { id, name, category, quantity, interval, streaks, dateCreated } = data;
+        const { id, name, category, quantity, interval,hour,minute, streaks, dateCreated } = data;
 
-        var habit = new Habit(id, name, category, quantity, interval, streaks, dateCreated,);
+        var habit = new Habit(id, name, category, quantity, interval,hour,minute, streaks, dateCreated,);
         let currentHabits = database.allHabits;
         let index = currentHabits.findIndex(habitElement => habitElement.id == habit.id);
         currentHabits[index] = habit;

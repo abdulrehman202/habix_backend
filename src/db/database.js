@@ -6,11 +6,11 @@ import HabitProgress from '../models/habit_progress.js';
 
 class Database{ 
     static allHabits = [
-            new Habit('1', 'Walking', 'HEALTH', 30,  'DAILY', 0, Date.now()),
-            new Habit('2', 'Drink Water', 'HEALTH', 8, 'DAILY', 0, Date.now()),
-            new Habit('3', 'Exercise', 'PRODUCTIVITY', 15, 'WEEKDAYS', 0, Date.now()),
-            new Habit('4', 'Read Book', 'MIND', 30, 'WEEKEND', 0, Date.now()),
-            new Habit('5', 'Long Drive', 'MIND', 20, 'WEEKEND', 0, Date.now()),];
+            new Habit('1', 'Walking', 'HEALTH', 30,  'DAILY','04','55', 0, Date.now()),
+            new Habit('2', 'Drink Water', 'HEALTH', 8, 'DAILY','04','55', 0, Date.now()),
+            new Habit('3', 'Exercise', 'PRODUCTIVITY', 15, 'WEEKDAYS','04','55', 0, Date.now()),
+            new Habit('4', 'Read Book', 'MIND', 30, 'WEEKEND','04','55', 0, Date.now()),
+            new Habit('5', 'Long Drive', 'MIND', 20, 'WEEKEND','04','55', 0, Date.now()),];
 
     static progress = [
             // new HabitProgress('1', 20 ),
