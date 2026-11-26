@@ -30,14 +30,11 @@ export default (async (req, res, next) => {
 
     else {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 2525,
-            secure: false,
             service: 'gmail',
             auth: { user: process.env.EMAIL_ID, pass: process.env.EMAIL_PASSWORD }
         });
         const token = crypto.randomBytes(32).toString('hex');
-        const url = `https://habix-backend-igvi.onrender.com/user/verify/?token=${token}`;
+        const url = `http://localhost:${process.env.PORT}/user/verify/?token=${token}`;
         const waiting = waitForLinkClick(token,55000);
         waiting.catch(() => { });
         await transporter.sendMail({
