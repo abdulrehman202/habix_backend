@@ -1,5 +1,5 @@
 import express from "express";
-import generateToken from '../utils/token_generator.js';
+import {generateToken, generateRefreshToken} from '../utils/token_generator.js';
 const router = express.Router();
 import hashPassword from '../utils/hash_password.js';
 import userExist from '../middlewares/user_exist_middleware.js';
@@ -23,7 +23,8 @@ router.get('/verify/', (req, res) => {
 router.post("/login", (req, res) => {
     const {email, password} = req.body;
 var token = generateToken({email:email,password:password});
-res.send({token:token})
+var refreshToken = generateRefreshToken({email:email,password:password});
+res.send({token:token,refreshToken:refreshToken})
 });
 
 router.post("/signup", async (req, res) => {

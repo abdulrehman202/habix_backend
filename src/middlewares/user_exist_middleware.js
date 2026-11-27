@@ -15,11 +15,11 @@ export default (async (req, res, next)  => {
             }
             else
                 {
-                    res.status(401).send({ message: 'Incorrect passsword' })
+                    res.send({ message: 'Incorrect passsword' })
                 }
     }
 
     else {
-        res.status(401).send({ message: 'User does not exist' });
+        res.send({ message: 'User does not exist' });
     }
 });

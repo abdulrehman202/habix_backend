@@ -25,7 +25,7 @@ export default (async (req, res, next) => {
     let userExist = authController.userExist(email) != null;
 
     if (userExist) {
-        res.status(401).send({ message: 'User already exist' });
+        res.send({ message: 'User already exist' });
     }
 
     else {
@@ -46,7 +46,7 @@ export default (async (req, res, next) => {
         await waiting;
         next();}
         catch(_){
-            res.status(401).send({ message: 'Email verification failed!' });
+            res.send({ message: 'Email verification failed!' });
         }
     }
 });
