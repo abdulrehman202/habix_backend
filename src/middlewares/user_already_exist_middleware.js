@@ -1,8 +1,8 @@
-import AuthController from "../controllers/auth_controller.js";
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
 import verificationEvents from '../utils/verification_event.js';
 import crypto from 'crypto';
+import db from '../db/database.js';
 
 function waitForLinkClick(token, timeoutMs = 120000) {
     return new Promise((resolve, reject) => {
@@ -20,9 +20,10 @@ function waitForLinkClick(token, timeoutMs = 120000) {
 
 export default (async (req, res, next) => {
     const { email } = req.body;
-
-    let authController = new AuthController();
-    let userExist = authController.userExist(email) != null;
+    
+    let all_users = db.users;
+    let user = all_users.find((element) => element.email == email);
+    let userExist = user != null;
 
     if (userExist) {
         res.send({ message: 'User already exist' });
