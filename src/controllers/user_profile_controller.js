@@ -6,38 +6,38 @@ import extractToken from '../utils/extract_token.js';
 
 class UserProfileController{
 
-    setProfile(header, data)
+    setProfile = async (req, res) =>
     {
-        let token = extractToken(header);
+        let token = extractToken(req.headers['authorization']);
         let email = extractEmailFromToken(token);
-        const {  name, dateOfBirth, weight, height, gender } = data;
-
+        const { name, dateOfBirth, weight, height, gender } = req.body;
         var userProfile = new UserProfile(email, name, dateOfBirth, weight, height, gender);
         Database.userProfiles.push(userProfile);
-        return userProfile;
+        res.send({ userProfile: userProfile });
     }
 
-    updateProfile(header, data)
+    updateProfile= async (req, res) =>
     {
-        let token = extractToken(header);
+        let token = extractToken(req.headers['authorization']);
         let email = extractEmailFromToken(token);
-        const { name, dateOfBirth, weight, height, gender } = data;
+        const { name, dateOfBirth, weight, height, gender } = req.body;
         let all_userProfiles = Database.userProfiles;
         let userProfile = new UserProfile(email, name, dateOfBirth, weight, height, gender);
         let index = all_userProfiles.findIndex((element) => element.email == email);
         all_userProfiles[index] = userProfile;
         Database.userProfiles = all_userProfiles;
-        return all_userProfiles.find((element) => element.email == email);
+        res.send({userProfile: userProfile});
     }
 
-    getProfile(header)
+    getProfile = async (req, res) =>
     {
-        let token = extractToken(header);
+        let token = extractToken(req.headers['authorization']);
         let email = extractEmailFromToken(token);
         let all_userProfiles = Database.userProfiles;
-        return all_userProfiles.find((element) => element.email == email);
+        let profile = all_userProfiles.find((element) => element.email == email);
+        res.send({userProfile: profile});
     }
 
 }
 
-export default UserProfileController;
+export default new UserProfileController();
