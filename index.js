@@ -28,6 +28,7 @@ app.use("/user", authRouter);
 app.use("/user/login", authRouter);
 app.use("/user/signup", authRouter);
 app.use("/user/signout", authRouter);
+app.use("/user/refresh", authRouter);
 
 app.use("/habits", habitRouter);
 app.use("/habits/add", habitRouter);

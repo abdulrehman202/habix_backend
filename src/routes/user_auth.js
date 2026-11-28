@@ -6,6 +6,7 @@ import userExist from '../middlewares/user_exist_middleware.js';
 import userAlreadyExist from "../middlewares/user_already_exist_middleware.js";
 import AuthController from "../controllers/auth_controller.js";
 import verificationEvents from '../utils/verification_event.js';
+import extractPaylod from '../utils/extract_payload_from_refresh_token.js';
 
 router.use('/login', userExist);
 router.use('/signup', userAlreadyExist);
@@ -25,6 +26,18 @@ router.post("/login", (req, res) => {
 var token = generateToken({email:email,password:password});
 var refreshToken = generateRefreshToken({email:email,password:password});
 res.send({token:token,refreshToken:refreshToken})
+});
+
+router.post("/refresh", (req, res) => {
+  const { refreshToken } = req.body;
+  var payLoad = extractPaylod(refreshToken);
+  try{
+  var token = generateToken({email: payLoad.email, password: payLoad.password});
+  res.send({ token: token });
+}
+catch(_){
+res.sendStatus(401).send({message: 'Session expired. Login again'});
+}
 });
 
 router.post("/signup", async (req, res) => {
